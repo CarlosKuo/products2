@@ -18,4 +18,8 @@ while True:
     # 一行寫法
     products.append([name, price])
 
-print(products)
+print(products) # 印出整個清單
+
+for product in products:
+    # print(product) # 印出單筆清單
+    print(product[0], '的價格是', product[1]) # 個別印出單筆清單中的第 0 筆資料和第 1 筆資料
