@@ -5,6 +5,7 @@ while True:
     if name == 'q': # quit
         break
     price = input('請輸入商品價格: ')
+    price = int(price)
 
     # 傳統流程寫法
     # p = [] # 問完商品和價格就先建立一個清單，因為在迴圈中，所以每建立一次就循環回來變空值，輸入後再加到大清單後。
@@ -31,4 +32,4 @@ with open('products.csv', 'w') as file:
     # 從 products 一個一個取東西出來放到變數 product 去做存取動作
     for product in products:
         # 檔案寫入 - write() 函式如要字串串起來要用 + 號，如果用逗點會認為參數，而 write() 這函式沒有額外參數，所以會報錯
-        file.write(product[0] + ',' + product[1] + '\n')
+        file.write(product[0] + ',' + str(product[1]) + '\n')
