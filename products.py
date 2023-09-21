@@ -23,3 +23,12 @@ print(products) # 印出整個清單
 for product in products:
     # print(product) # 印出單筆清單
     print(product[0], '的價格是', product[1]) # 個別印出單筆清單中的第 0 筆資料和第 1 筆資料
+
+
+
+
+with open('products.csv', 'w') as file:
+    # 從 products 一個一個取東西出來放到變數 product 去做存取動作
+    for product in products:
+        # 檔案寫入 - write() 函式如要字串串起來要用 + 號，如果用逗點會認為參數，而 write() 這函式沒有額外參數，所以會報錯
+        file.write(product[0] + ',' + product[1] + '\n')
