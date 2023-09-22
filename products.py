@@ -27,8 +27,10 @@ for product in products:
 
 
 
-
-with open('products.csv', 'w') as file:
+# 加入編碼參數(encoding)解決中文字問題
+with open('products.csv', 'w', encoding='utf-8') as file:
+    # 第一行寫名稱
+    file.write('商品,價格\n')
     # 從 products 一個一個取東西出來放到變數 product 去做存取動作
     for product in products:
         # 檔案寫入 - write() 函式如要字串串起來要用 + 號，如果用逗點會認為參數，而 write() 這函式沒有額外參數，所以會報錯
