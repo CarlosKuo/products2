@@ -1,18 +1,20 @@
 # 讀取檔案
-products = []
+products = [] # 建立空清單
 with open('products.csv', 'r', encoding='utf-8') as f:
     for line in f:
+        # 詳細寫法
         # strip() 去除換行和空格符號，split() 用逗點切割
         # s = line.strip().split(',')
         # name = s[0]
         # price = s[1]
+        if '商品,價格' in line: # 跳過第一列的名稱敘述
+            continue
         # 簡易寫法
         name, price = line.strip().split(',')
         products.append([name, price])
 print(products)
 
-# 建立空清單
-
+# 讓使用者輸入
 while True:
     name = input('請輸入商品名稱: ')
     if name == 'q': # quit
@@ -20,7 +22,7 @@ while True:
     price = input('請輸入商品價格: ')
     price = int(price)
 
-    # 傳統流程寫法
+    # 詳細流程寫法
     # p = [] # 問完商品和價格就先建立一個清單，因為在迴圈中，所以每建立一次就循環回來變空值，輸入後再加到大清單後。
     # p.append(name)
     # p.append(price)
@@ -31,15 +33,15 @@ while True:
 
     # 一行寫法
     products.append([name, price])
-
 print(products) # 印出整個清單
 
+# 印出所有購買紀錄
 for product in products:
     # print(product) # 印出單筆清單
     print(product[0], '的價格是', product[1]) # 個別印出單筆清單中的第 0 筆資料和第 1 筆資料
 
 
-
+# 寫入檔案
 # 加入編碼參數(encoding)解決中文字問題
 with open('products.csv', 'w', encoding='utf-8') as file:
     # 第一行寫名稱
