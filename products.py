@@ -1,18 +1,27 @@
-# 讀取檔案
+import os # operating system
+
+# 不管檔案存不存在都先建立空清單
 products = [] # 建立空清單
-with open('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        # 詳細寫法
-        # strip() 去除換行和空格符號，split() 用逗點切割
-        # s = line.strip().split(',')
-        # name = s[0]
-        # price = s[1]
-        if '商品,價格' in line: # 跳過第一列的名稱敘述
-            continue
-        # 簡易寫法
-        name, price = line.strip().split(',')
-        products.append([name, price])
-print(products)
+
+# 檢查檔案
+if os.path.isfile('products.csv'): # 只給檔名叫做相對路徑，相對路徑是指在以在程式資料夾下的路徑為起點
+    print('yeah!找到檔案了!')
+    # 讀取檔案
+    with open('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            # 詳細寫法
+            # strip() 去除換行和空格符號，split() 用逗點切割
+            # s = line.strip().split(',')
+            # name = s[0]
+            # price = s[1]
+            if '商品,價格' in line: # 跳過第一列的名稱敘述
+                continue
+            # 簡易寫法
+            name, price = line.strip().split(',')
+            products.append([name, price])
+    print(products)
+else:
+    print('找不到檔案 ...')
 
 # 讓使用者輸入
 while True:
@@ -40,10 +49,8 @@ for product in products:
     # print(product) # 印出單筆清單
     print(product[0], '的價格是', product[1]) # 個別印出單筆清單中的第 0 筆資料和第 1 筆資料
 
-
 # 寫入檔案
-# 加入編碼參數(encoding)解決中文字問題
-with open('products.csv', 'w', encoding='utf-8') as file:
+with open('products.csv', 'w', encoding='utf-8') as file: # 加入編碼參數(encoding)解決中文字問題
     # 第一行寫名稱
     file.write('商品,價格\n')
     # 從 products 一個一個取東西出來放到變數 product 去做存取動作
